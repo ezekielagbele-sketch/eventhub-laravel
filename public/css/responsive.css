@@ -1,0 +1,501 @@
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 992px){
+
+    .navbar{
+
+        padding:16px 5%;
+
+    }
+
+    .nav-links{
+
+        gap:25px;
+
+    }
+
+    .nav-right .btn{
+
+        padding:10px 16px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .menu-toggle{
+
+        display:block;
+
+        z-index:1002;
+
+    }
+
+    .nav-menu{
+
+        display:none;
+
+        position:absolute;
+
+        top:85px;
+
+        left:0;
+
+        width:100%;
+
+        background:#fff;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:30px;
+
+        box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+        gap:25px;
+
+    }
+
+    .nav-menu.active{
+
+        display:flex;
+
+    }
+
+    .nav-links{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        width:100%;
+
+        justify-content:flex-start;
+
+        align-items:flex-start;
+
+    }
+
+    .nav-links a{
+
+        width:100%;
+
+        font-size:17px;
+
+    }
+
+    .nav-right{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:15px;
+
+    }
+
+    .nav-right .btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .user-dropdown{
+
+        width:100%;
+
+    }
+
+    .user-btn{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    .dropdown-menu{
+
+        position:static;
+
+        width:100%;
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:none;
+
+        display:none;
+
+        margin-top:10px;
+
+        box-shadow:none;
+
+        border:1px solid var(--border);
+
+    }
+
+    .dropdown-menu.show{
+
+        display:block;
+
+    }
+
+}
+
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media (max-width:480px){
+
+    .logo a{
+
+        font-size:28px;
+
+    }
+
+    .navbar{
+
+        padding:14px 20px;
+
+    }
+
+}
+
+/* ==========================================
+   HERO RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .hero-container{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .hero-left h1{
+
+        font-size:48px;
+
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+    .hero-stats{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    .hero-right{
+
+        margin-top:30px;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+.hero{
+
+    padding:80px 6%;
+
+}
+
+.hero-container{
+
+    grid-template-columns:1fr;
+
+    text-align:center;
+
+}
+
+.hero-search{
+
+    margin:auto;
+
+}
+
+.hero-stats{
+
+    justify-content:center;
+
+}
+
+.hero-right{
+
+    margin-top:40px;
+
+}
+
+.hero h1{
+
+    font-size:42px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+    .hero{
+
+        padding:70px 6%;
+
+    }
+
+    .hero-left h1{
+
+        font-size:38px;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .hero-buttons .btn{
+
+        width:100%;
+
+    }
+
+    .hero-right img{
+
+        max-width:420px;
+
+    }
+
+}
+
+/* ==========================
+   EVENTS
+========================== */
+
+@media(max-width:992px){
+
+    .event-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .event-image{
+
+        height:260px;
+
+    }
+
+    .event-details{
+
+        padding:30px;
+
+    }
+
+    .event-action{
+
+        padding:0 30px 30px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .section-heading h2{
+
+        font-size:32px;
+
+    }
+
+}
+
+/* ==========================
+   FEATURED EVENT
+========================== */
+
+@media(max-width:992px){
+
+    .featured-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .featured-content{
+
+        text-align:center;
+        align-items:center;
+
+    }
+
+    .featured-meta{
+
+        grid-template-columns:1fr;
+
+        width:100%;
+
+    }
+
+}
+
+/* ==========================
+   TESTIMONIALS
+========================== */
+
+@media (max-width:992px){
+
+    .testimonial-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .testimonial-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ===================================
+   NEWSLETTER
+=================================== */
+
+@media(max-width:768px){
+
+    .newsletter{
+
+        padding:80px 6%;
+
+    }
+
+    .newsletter h2{
+
+        font-size:34px;
+
+    }
+
+    .newsletter p{
+
+        font-size:16px;
+
+    }
+
+    .newsletter-form{
+
+        flex-direction:column;
+
+    }
+
+    .newsletter-form input{
+
+        width:100%;
+
+    }
+
+    .newsletter-form button{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .footer-container{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+        text-align:center;
+
+    }
+
+    .footer-socials{
+
+        justify-content:center;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .footer-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+
+/* ==========================================
+   EVENTS FILTER RESPONSIVE
+========================================== */
+
+@media (max-width:768px){
+
+    .search-box{
+
+        margin:-30px 20px 50px;
+
+        flex-direction:column;
+
+        padding:20px;
+
+    }
+
+    .search-box input,
+    .search-box select,
+    .search-box button{
+
+        width:100%;
+
+    }
+
+}

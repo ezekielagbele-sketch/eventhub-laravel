@@ -1,0 +1,65 @@
+@import 'variables.css';
+@import 'navbar.css';
+@import 'hero.css';
+@import 'featured-event.css';
+@import 'trusted.css';
+@import 'why.css';
+@import 'how.css';
+@import 'categories.css';
+@import 'testimonial.css';
+@import 'events.css';
+@import 'event-details.css';
+@import 'toast.css';
+@import 'registrations.css';
+@import 'footer.css';
+@import 'responsive.css';
+
+/* ==========================================
+   GLOBAL RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+.container{
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+}

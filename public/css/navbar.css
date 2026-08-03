@@ -1,0 +1,446 @@
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 7%;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+/* Logo */
+
+.logo a{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+}
+
+/* Entire Navigation */
+
+.nav-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    flex:1;
+
+    margin-left:50px;
+
+}
+
+/* Navigation Links */
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    flex:1;
+
+    justify-content:center;
+
+}
+
+.nav-links a{
+
+    color:var(--text);
+
+    font-weight:600;
+
+    position:relative;
+
+    transition:var(--transition);
+
+}
+
+.nav-links a:hover{
+
+    color:var(--primary);
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:3px;
+
+    background:var(--primary);
+
+    transition:.3s;
+
+    border-radius:20px;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+.active-nav{
+
+    color:var(--primary)!important;
+
+}
+
+.active-nav::after{
+
+    width:100%!important;
+
+}
+
+/* Right Side */
+
+.nav-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+/* Create Event */
+
+.nav-right .btn{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.nav-right .btn:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* User */
+
+.user-dropdown{
+
+    position:relative;
+
+}
+
+.user-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    padding:10px 16px;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.user-btn:hover{
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+/* Avatar */
+
+.avatar{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+.avatar.large{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:22px;
+
+}
+
+/* ==========================================
+   DROPDOWN
+========================================== */
+
+.dropdown-menu{
+
+    position:absolute;
+
+    top:70px;
+
+    right:0;
+
+    width:280px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-md);
+
+    overflow:hidden;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(-10px);
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.dropdown-menu.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.dropdown-header{
+
+    display:flex;
+
+    gap:15px;
+
+    padding:20px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.dropdown-header strong{
+
+    display:block;
+
+}
+
+.dropdown-header small{
+
+    color:var(--text-light);
+
+    word-break:break-word;
+
+}
+
+.dropdown-menu a{
+
+    display:block;
+
+    padding:16px 20px;
+
+    color:var(--text);
+
+    transition:.3s;
+
+}
+
+.dropdown-menu a:hover{
+
+    background:#f8fafc;
+
+}
+
+.dropdown-menu form button{
+
+    width:100%;
+
+    padding:16px 20px;
+
+    border:none;
+
+    background:none;
+
+    text-align:left;
+
+    color:var(--danger);
+
+    cursor:pointer;
+
+}
+
+.dropdown-menu form button:hover{
+
+    background:#fef2f2;
+
+}
+
+/* ==========================================
+   MOBILE BUTTON
+========================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================================
+   GLOBAL BUTTONS
+========================================== */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    padding:14px 28px;
+
+    border:none;
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+    text-decoration:none;
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 30px rgba(37,99,235,.30);
+
+}
+
+.btn:active{
+
+    transform:scale(.98);
+
+}
+
+.btn-secondary{
+
+    background:#f1f5f9;
+
+    color:#1e293b;
+
+}
+
+.btn-secondary:hover{
+
+    background:#e2e8f0;
+
+    box-shadow:none;
+
+}
+
+.btn-danger{
+
+    background:#ef4444;
+
+}
+
+.btn-danger:hover{
+
+    background:#dc2626;
+
+}
+
+.btn-success{
+
+    background:#10b981;
+
+}
+
+.btn-success:hover{
+
+    background:#059669;
+
+}
