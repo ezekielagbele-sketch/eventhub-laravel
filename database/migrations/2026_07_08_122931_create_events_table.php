@@ -20,6 +20,10 @@ return new class extends Migration
             $table->time('event_time');
             $table->integer('capacity');
             $table->string('image')->nullable();
+            $table->foreignId('user_id')
+                  ->nullable()
+                  ->constrained()
+                  ->nullOnDelete();
             $table->timestamps();
         });
     }

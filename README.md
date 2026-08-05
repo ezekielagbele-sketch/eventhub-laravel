@@ -4,9 +4,26 @@ EventHub is a modern Event Management System built with Laravel that allows orga
 
 ---
 
-## 📸 Preview
+## Home Page
 
-> Screenshots will be added after deployment.
+![Home](screenshots/home.png.png)
+
+---
+
+## Events Page
+
+![Events](screenshots/events.png.png)
+
+---
+
+## Event Details
+![Details](screenshots/event-details.png.png)
+
+---
+
+## Organizer Dashboard
+
+![Dashboard](screenshots/dashboard.png.png)
 
 ---
 

@@ -13,18 +13,44 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
+    <body>
+
+    <div class="auth-wrapper">
+
+        <div class="auth-container">
+
+            <!-- Header -->
+            <div class="auth-header">
+
+    <a href="{{ route('home') }}">
+
+        <img
+            src="{{ asset('images/logo-icon.jpeg') }}"
+            alt="EventHub Logo"
+            class="auth-logo">
+
+    </a>
+
+    <p class="auth-tagline">
+
+        Discover. Connect. Experience.
+
+    </p>
+
+</div>
+
+            <!-- Authentication Card -->
+            <div class="auth-card">
+
+                {{ $slot }}
+
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
         </div>
-    </body>
+
+    </div>
+
+</body>
 </html>

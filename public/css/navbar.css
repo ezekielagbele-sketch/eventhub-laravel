@@ -444,3 +444,9 @@
     background:#059669;
 
 }
+
+.logo img{
+    height:55px;
+    width:auto;
+    display:block;
+}

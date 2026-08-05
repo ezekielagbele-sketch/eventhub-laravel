@@ -6,9 +6,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
         <div class="footer-brand">
 
-            <h2>
-                <span>Event</span>Hub
-            </h2>
+            <img src="{{ asset('images/logo-icon.jpeg') }}"
+                 alt="EventHub Logo"
+                 class="footer-logo">
 
             <p>
                 EventHub helps people discover, organize and attend

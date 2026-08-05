@@ -13,7 +13,7 @@
 
     <!-- Logo -->
     <div class="logo">
-        <a href="{{ route('home') }}">EventHub</a>
+        <a href="{{ route('home') }}"><img src="{{ asset('images/logo-icon.jpeg') }}" alt="EventHub Logo"></a>
     </div>
 
     <!-- Mobile Toggle -->
