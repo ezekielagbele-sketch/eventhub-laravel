@@ -317,5 +317,6 @@ if(menuToggle && navMenu){
 
 </script>
 
+@stack('scripts')
 </body>
 </html>

@@ -2,87 +2,208 @@
 
 @section('content')
 
-<div class="dashboard-container">
+<!-- HERO -->
+<section class="dashboard-hero">
 
-    <!-- Hero Section -->
-    <section class="dashboard-hero">
+    <div>
+        <h1>
+            Welcome back, {{ auth()->user()->name }} 👋
+        </h1>
 
-        <div>
+        <p>
+            Manage your events and monitor registrations from one place.
+        </p>
+    </div>
 
-            <h1>
-                Welcome back,
-                {{ auth()->user()->name }}
-                👋
-            </h1>
+    <a href="{{ route('events.create') }}" class="dashboard-create-btn">
+        + Create Event
+    </a>
 
-            <p>
-                Manage your events and monitor registrations from one place.
-            </p>
+</section>
+
+
+<!-- STATS -->
+<section class="stats-grid">
+
+    <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <h2>{{ $eventsCreated }}</h2>
+        <p>Total Events</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">⏰</div>
+        <h2>{{ $upcomingEvents }}</h2>
+        <p>Upcoming Events</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🎟️</div>
+        <h2>{{ $totalRegistrations }}</h2>
+        <p>Registrations</p>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">🪑</div>
+        <h2>{{ $remainingSeats }}</h2>
+        <p>Remaining Seats</p>
+    </div>
+
+</section>
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <h2>📅 Recent Events</h2>
+
+        <a href="{{ route('events.index') }}">View All →</a>
+
+    </div>
+
+    @forelse($recentEvents as $event)
+
+        <div class="dashboard-event-row">
+
+            <div>
+
+                <strong>{{ $event->title }}</strong>
+
+                <br>
+
+                <small>
+
+                    {{ $event->event_date->format('d M Y') }}
+
+                </small>
+
+            </div>
+
+            <div>
+
+                {{ $event->registrations_count }}
+
+                Registrations
+
+            </div>
 
         </div>
 
-        <a href="{{ route('events.create') }}" class="dashboard-create-btn">
-            + Create Event
+    @empty
+
+        <p>You haven't created any events yet.</p>
+
+    @endforelse
+
+</section>
+
+<!-- Quick Actions -->
+
+<section class="dashboard-section">
+
+    <div class="section-header">
+
+        <h2>⚡ Quick Actions</h2>
+
+    </div>
+
+    <div class="quick-actions">
+
+        <a href="{{ route('events.create') }}" class="action-card">
+            <span>➕</span>
+            <h3>Create Event</h3>
+            <p>Create a new event for attendees.</p>
         </a>
 
-    </section>
+        <a href="{{ route('events.index') }}" class="action-card">
+            <span>📅</span>
+            <h3>Browse Events</h3>
+            <p>View all available events.</p>
+        </a>
 
-    <!-- Statistics Cards -->
+        <a href="{{ route('events.my') }}" class="action-card">
+            <span>🎤</span>
+            <h3>My Events</h3>
+            <p>Manage events you've created.</p>
+        </a>
 
-    <section class="stats-grid">
+        <a href="{{ route('registrations.my') }}" class="action-card">
+            <span>🎟️</span>
+            <h3>My Registrations</h3>
+            <p>See events you've registered for.</p>
+        </a>
 
-        <div class="stat-card">
+    </div>
 
-            <div class="stat-icon">
-                📅
-            </div>
+</section>
 
-            <h2>{{ $eventsCreated }}</h2>
+<!-- Dashboard Summary -->
 
-            <p>Total Events</p>
+<section class="dashboard-summary">
 
-        </div>
+    <div class="summary-card">
 
-        <div class="stat-card">
+        <h2>🏆 Most Popular Event</h2>
 
-            <div class="stat-icon">
-                ⏰
-            </div>
+        @if($mostPopularEvent)
 
-            <h2>{{ $upcomingEvents }}</h2>
+            <h3>{{ $mostPopularEvent->title }}</h3>
 
-            <p>Upcoming Events</p>
+            <p>
 
-        </div>
+                {{ $mostPopularEvent->registrations_count }}
 
-        <div class="stat-card">
+                registrations
 
-            <div class="stat-icon">
-                🎟️
-            </div>
+            </p>
 
-            <h2>{{ $totalRegistrations }}</h2>
+            <small>
 
-            <p>Registrations</p>
+                {{ $mostPopularEvent->category?->name ?? 'Uncategorized' }}
 
-        </div>
+            </small>
 
-        <div class="stat-card">
+        @else
 
-            <div class="stat-icon">
-                🪑
-            </div>
+            <p>No events yet.</p>
 
-            <h2>{{ $remainingSeats }}</h2>
+        @endif
 
-            <p>Remaining Seats</p>
+    </div>
 
-        </div>
+    <div class="summary-card">
 
-    </section>
+        <h2>📅 Next Upcoming Event</h2>
 
-    <!-- Notifications Section -->
-    @if(count($notifications))
+        @if($nextUpcomingEvent)
+
+            <h3>{{ $nextUpcomingEvent->title }}</h3>
+
+            <p>
+
+                {{ \Carbon\Carbon::parse($nextUpcomingEvent->event_date)->format('d M Y') }}
+
+            </p>
+
+            <small>
+
+                {{ $nextUpcomingEvent->venue }}
+
+            </small>
+
+        @else
+
+            <p>No upcoming events.</p>
+
+        @endif
+
+    </div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+@if(count($notifications))
 
 <section class="dashboard-notifications">
 
@@ -91,9 +212,7 @@
     @foreach($notifications as $notification)
 
         <div class="notification {{ $notification['type'] }}">
-
             {{ $notification['message'] }}
-
         </div>
 
     @endforeach
@@ -102,8 +221,8 @@
 
 @endif
 
-<!-- Registration Analytics -->
 
+<!-- ANALYTICS -->
 <section class="dashboard-chart">
 
     <h2>📊 Registration Analytics</h2>
@@ -112,7 +231,10 @@
 
 </section>
 
-</div>
+@endsection
+
+
+@push('scripts')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -120,62 +242,39 @@
 
 const ctx = document.getElementById('registrationChart');
 
-if(ctx){
-
-    new Chart(ctx,{
-
-        type:'bar',
-
-        data:{
-
-            labels:@json($chartLabels),
-
-            datasets:[{
-
-                label:'Registrations',
-
-                data:@json($chartData),
-
-                backgroundColor:'#2563eb',
-
-                borderRadius:8
-
-            }]
-
-        },
-
-        options:{
-
-            responsive:true,
-
-            plugins:{
-
-                legend:{
-                    display:false
-                }
-
-            },
-
-            scales:{
-
-                y:{
-
-                    beginAtZero:true,
-
-                    ticks:{
-                        precision:0
-                    }
-
-                }
-
+new Chart(ctx,{
+    type:'bar',
+    data:{
+        labels:[
+            'Events',
+            'Registrations',
+            'Upcoming'
+        ],
+        datasets:[{
+            label:'Overview',
+            data:[
+                {{ $eventsCreated }},
+                {{ $totalRegistrations }},
+                {{ $upcomingEvents }}
+            ],
+            backgroundColor:[
+                '#2563eb',
+                '#16a34a',
+                '#f59e0b'
+            ],
+            borderRadius:8
+        }]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{
+                display:false
             }
-
         }
-
-    });
-
-}
+    }
+});
 
 </script>
 
-@endsection
+@endpush

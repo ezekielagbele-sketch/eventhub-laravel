@@ -21,6 +21,12 @@ class DashboardController extends Controller
         ->latest()
         ->get();
 
+    $recentEvents = $user->events()
+        ->withCount('registrations')
+        ->latest()
+        ->take(5)
+        ->get();
+
         foreach ($events as $event) {
 
     $event->remainingSeats =
@@ -137,6 +143,7 @@ foreach ($events as $event) {
 
     return view('dashboard', compact(
     'events',
+    'recentEvents',
     'eventsCreated',
     'upcomingEvents',
     'totalRegistrations',
