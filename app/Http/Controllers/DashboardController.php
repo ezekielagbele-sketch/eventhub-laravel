@@ -76,6 +76,10 @@ $nextUpcomingEvent = $events
 
     $totalRegistrations = $events->sum('registrations_count');
 
+    $remainingSeats = $events->sum(function ($event) {
+    return max($event->capacity - $event->registrations_count, 0);
+});
+
     $categoriesUsed = $events
         ->pluck('category_id')
         ->filter()
@@ -136,6 +140,7 @@ foreach ($events as $event) {
     'eventsCreated',
     'upcomingEvents',
     'totalRegistrations',
+    'remainingSeats',
     'categoriesUsed',
     'mostPopularEvent',
     'nextUpcomingEvent',

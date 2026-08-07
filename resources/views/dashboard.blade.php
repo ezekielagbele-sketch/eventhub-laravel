@@ -2,304 +2,85 @@
 
 @section('content')
 
-<!-- ===========================
-    Dashboard Header
-=========================== -->
+<div class="dashboard-container">
 
-<div class="dashboard-header">
-
-    <div class="dashboard-header-content">
+    <!-- Hero Section -->
+    <section class="dashboard-hero">
 
         <div>
 
             <h1>
-
-                Welcome back, {{ auth()->user()->name }} 👋
-
+                Welcome back,
+                {{ auth()->user()->name }}
+                👋
             </h1>
 
             <p>
-
                 Manage your events and monitor registrations from one place.
-
             </p>
 
         </div>
 
-        <a
-            href="{{ route('events.create') }}"
-            class="btn">
-
+        <a href="{{ route('events.create') }}" class="dashboard-create-btn">
             + Create Event
-
         </a>
 
-    </div>
+    </section>
 
-</div>
+    <!-- Statistics Cards -->
 
-<!-- ===========================
-    Statistics
-=========================== -->
+    <section class="stats-grid">
 
-<div class="dashboard-stats">
+        <div class="stat-card">
 
-    <div class="stat-card">
+            <div class="stat-icon">
+                📅
+            </div>
 
-        <div class="stat-icon">📅</div>
+            <h2>{{ $eventsCreated }}</h2>
 
-        <h3>Total Events</h3>
-
-        <span>{{ $eventsCreated }}</span>
-
-    </div>
-
-    <div class="stat-card">
-
-        <div class="stat-icon">⏰</div>
-
-        <h3>Upcoming</h3>
-
-        <span>{{ $upcomingEvents }}</span>
-
-    </div>
-
-    <div class="stat-card">
-
-        <div class="stat-icon">🎟</div>
-
-        <h3>Registrations</h3>
-
-        <span>{{ $totalRegistrations }}</span>
-
-    </div>
-
-    <div class="stat-card">
-
-        <div class="stat-icon">🏷</div>
-
-        <h3>Categories</h3>
-
-        <span>{{ $categoriesUsed }}</span>
-
-    </div>
-
-</div>
-
-<!-- ===========================
-    Summary Cards
-=========================== -->
-
-<div class="dashboard-summary">
-
-    <div class="summary-info-card">
-
-        <h2>🔥 Most Popular Event</h2>
-
-        @if($mostPopularEvent)
-
-            <h3>{{ $mostPopularEvent->title }}</h3>
-
-            <p>{{ $mostPopularEvent->registrations_count }} Registrations</p>
-
-        @else
-
-            <p>No events available.</p>
-
-        @endif
-
-    </div>
-
-    <div class="summary-info-card">
-
-        <h2>📅 Next Upcoming Event</h2>
-
-        @if($nextUpcomingEvent)
-
-            <h3>{{ $nextUpcomingEvent->title }}</h3>
-
-            <p>
-
-                {{ \Carbon\Carbon::parse($nextUpcomingEvent->event_date)->format('d M Y') }}
-
-            </p>
-
-            <small>{{ $nextUpcomingEvent->venue }}</small>
-
-        @else
-
-            <p>No upcoming events.</p>
-
-        @endif
-
-    </div>
-
-</div>
-
-<!-- ===========================
-    Notifications
-=========================== -->
-
-<div class="dashboard-events">
-
-    <h2>🔔 Notifications</h2>
-
-    @forelse($notifications as $notification)
-
-        <div class="notification {{ $notification['type'] }}">
-
-            {{ $notification['message'] }}
+            <p>Total Events</p>
 
         </div>
 
-    @empty
+        <div class="stat-card">
 
-        <p>No new notifications.</p>
+            <div class="stat-icon">
+                ⏰
+            </div>
 
-    @endforelse
+            <h2>{{ $upcomingEvents }}</h2>
 
-</div>
+            <p>Upcoming Events</p>
 
-<!-- ===========================
-    Quick Actions
-=========================== -->
+        </div>
 
-<div class="dashboard-actions">
+        <div class="stat-card">
 
-    <a
-        href="{{ route('events.create') }}"
-        class="btn">
+            <div class="stat-icon">
+                🎟️
+            </div>
 
-        + Create Event
+            <h2>{{ $totalRegistrations }}</h2>
 
-    </a>
+            <p>Registrations</p>
 
-    <a
-        href="{{ route('events.index') }}"
-        class="btn">
+        </div>
 
-        Browse Events
+        <div class="stat-card">
 
-    </a>
+            <div class="stat-icon">
+                🪑
+            </div>
 
-    <a
-        href="{{ route('events.my') }}"
-        class="btn">
+            <h2>{{ $remainingSeats }}</h2>
 
-        My Events
+            <p>Remaining Seats</p>
 
-    </a>
+        </div>
 
-</div>
-
-<!-- ===========================
-    Recent Events
-=========================== -->
-
-<div class="dashboard-events">
-
-    <h2>Recent Events</h2>
-
-    @forelse($events as $event)
-
-        <div class="dashboard-event">
-
-    <div>
-
-        <strong>
-
-            {{ $event->title }}
-
-        </strong>
-
-        <br>
-
-        <small>
-
-            📅 {{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}
-
-        </small>
-
-    </div>
-
-    <div>
-
-        <strong>
-
-            {{ $event->registrations_count }}
-
-        </strong>
-
-        <br>
-
-        <small>
-
-            Registrations
-
-        </small>
-
-    </div>
+    </section>
 
 </div>
-
-    @empty
-
-        <p>You haven't created any events yet.</p>
-
-    @endforelse
-
-</div>
-
-
-<!-- ===========================
-    Analytics
-=========================== -->
-
-<div class="dashboard-charts">
-
-    <div class="chart-card">
-
-        <h2>📊 Registrations Per Event</h2>
-
-        <canvas id="registrationChart"></canvas>
-
-    </div>
-
-</div>
-<!-- ===========================
-    Chart JS
-=========================== -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    const ctx = document.getElementById('registrationChart');
-
-    if (ctx) {
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: @json($chartLabels),
-                datasets: [{
-                    label: 'Registrations',
-                    data: @json($chartData),
-                    backgroundColor: [
-                        '#2563eb',
-                        '#10b981',
-                        '#f59e0b',
-                        '#ef4444',
-                        '#8b5cf6',
-                        '#06b6d4'
-                    ],
-                    borderRadius: 8,
-                    borderWidth: 0
-                }]
-            }
-        });
-
-    }
-
-});
-</script>
 
 @endsection

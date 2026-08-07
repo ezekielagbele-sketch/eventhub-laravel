@@ -203,7 +203,7 @@
 
     background:#fff;
 
-    border-radius:18px;
+    border-radius:16px;
 
     padding:30px;
 
@@ -211,7 +211,7 @@
 
     box-shadow:0 8px 25px rgba(0,0,0,.08);
 
-    transition:.35s;
+    transition:.3s;
 
 }
 
