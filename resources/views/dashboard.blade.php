@@ -102,6 +102,79 @@
 
 @endif
 
+<!-- Registration Analytics -->
+
+<section class="dashboard-chart">
+
+    <h2>📊 Registration Analytics</h2>
+
+    <canvas id="registrationChart"></canvas>
+
+</section>
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById('registrationChart');
+
+if(ctx){
+
+    new Chart(ctx,{
+
+        type:'bar',
+
+        data:{
+
+            labels:@json($chartLabels),
+
+            datasets:[{
+
+                label:'Registrations',
+
+                data:@json($chartData),
+
+                backgroundColor:'#2563eb',
+
+                borderRadius:8
+
+            }]
+
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+                    display:false
+                }
+
+            },
+
+            scales:{
+
+                y:{
+
+                    beginAtZero:true,
+
+                    ticks:{
+                        precision:0
+                    }
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
 @endsection

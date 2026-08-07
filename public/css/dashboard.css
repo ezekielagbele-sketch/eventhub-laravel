@@ -247,3 +247,35 @@
     color:#b91c1c;
     border-left:6px solid #ef4444;
 }
+
+/* ==========================
+   DASHBOARD CHART
+========================== */
+
+.dashboard-chart{
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    margin:40px 0;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.dashboard-chart h2{
+
+    margin-bottom:25px;
+
+    color:#1e293b;
+
+}
+
+.dashboard-chart canvas{
+
+    max-height:350px;
+
+}
