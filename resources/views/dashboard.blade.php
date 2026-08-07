@@ -81,6 +81,27 @@
 
     </section>
 
+    <!-- Notifications Section -->
+    @if(count($notifications))
+
+<section class="dashboard-notifications">
+
+    <h2>🔔 Notifications</h2>
+
+    @foreach($notifications as $notification)
+
+        <div class="notification {{ $notification['type'] }}">
+
+            {{ $notification['message'] }}
+
+        </div>
+
+    @endforeach
+
+</section>
+
+@endif
+
 </div>
 
 @endsection

@@ -208,3 +208,42 @@
 }
 
 }
+
+/* ==========================
+   DASHBOARD NOTIFICATIONS
+========================== */
+
+.dashboard-notifications{
+    margin:40px 0;
+}
+
+.dashboard-notifications h2{
+    margin-bottom:20px;
+    color:#1e293b;
+}
+
+.notification{
+    padding:16px 20px;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-weight:600;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+.notification.info{
+    background:#dbeafe;
+    color:#1d4ed8;
+    border-left:6px solid #2563eb;
+}
+
+.notification.warning{
+    background:#fef3c7;
+    color:#92400e;
+    border-left:6px solid #f59e0b;
+}
+
+.notification.danger{
+    background:#fee2e2;
+    color:#b91c1c;
+    border-left:6px solid #ef4444;
+}
