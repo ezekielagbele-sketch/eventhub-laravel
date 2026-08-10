@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>EventHub</title>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
+    @vite('resources/js/app.js')
 </head>   
 <body>
 
@@ -18,7 +23,7 @@
     </div>
 
     <!-- Mobile Toggle -->
-    <button class="menu-toggle" id="menuToggle">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu">
         ☰
     </button>
 
@@ -316,7 +321,10 @@ if(menuToggle && navMenu){
 }
 
 </script>
+@yield('content')
 
 @stack('scripts')
+
 </body>
+
 </html>
