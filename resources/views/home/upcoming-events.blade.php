@@ -15,100 +15,98 @@
 
     <div class="events-grid">
 
-        @forelse($events as $event)
+    @forelse($events as $event)
 
         <div class="event-card">
 
-            <div class="event-image">
+            <!-- Event Image -->
+<div class="event-image">
 
-                @if($event->image)
+    @if($event->image)
 
-                    <img
-                        src="{{ asset('storage/'.$event->image) }}"
-                        alt="{{ $event->title }}"
-                        onerror="this.onerror=null;this.src='{{ asset('images/default-event.jpg.jpeg') }}';">
+        <img
+            src="{{ filter_var($event->image, FILTER_VALIDATE_URL)
+                ? $event->image
+                : asset('storage/' . $event->image) }}"
+            alt="{{ $event->title }}"
+            loading="lazy">
 
-                @else
+    @else
 
-                    <img
-                        src="{{ asset('images/default-event.jpg.jpeg') }}"
-                        alt="Default Event">
+        <img
+            src="{{ asset('images/default-event.jpg.jpeg') }}"
+            alt="Default Event"
+            loading="lazy">
 
-                @endif
+    @endif
 
-                <span class="event-badge">
+</div>
 
+
+            <!-- Event Details -->
+            <div class="event-details">
+
+                <span class="category-badge">
                     {{ $event->category->name ?? 'General' }}
-
                 </span>
 
-            </div>
-
-            <div class="event-content">
-
                 <h3>
-
                     {{ $event->title }}
-
                 </h3>
 
                 <p>
-
-                    {{ Str::limit($event->description,100) }}
-
+                    {{ Str::limit($event->description, 120) }}
                 </p>
 
-                <div class="event-info">
+                <div class="event-meta">
+
+                    <span>
+                        📍 {{ $event->venue }}
+                    </span>
 
                     <span>
                         📅
                         {{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}
                     </span>
 
-                    <span>
-                        📍 {{ $event->venue }}
-                    </span>
-
                 </div>
 
-                <div class="event-footer">
+            </div>
 
-                    <div class="capacity">
 
-                        👥 {{ $event->capacity }} Seats
+            <!-- Event Action -->
+            <div class="event-action">
 
-                    </div>
+                <span class="price">
+                    FREE
+                </span>
 
-                    <a
-                        href="{{ route('events.show',$event) }}"
-                        class="btn">
+                <a
+                    href="{{ route('events.show', $event) }}"
+                    class="btn">
 
-                        View Event
+                    View Event
 
-                    </a>
-
-                </div>
+                </a>
 
             </div>
 
         </div>
 
-        @empty
+    @empty
 
-            <div class="empty-events">
+        <div class="empty-events">
 
-                <h3>No Events Available</h3>
+            <h3>No Events Yet</h3>
 
-                <p>
+            <p>
+                Check back soon for exciting events.
+            </p>
 
-                    Check back soon.
+        </div>
 
-                </p>
+    @endforelse
 
-            </div>
-
-        @endforelse
-
-    </div>
+</div>
 
 </section>

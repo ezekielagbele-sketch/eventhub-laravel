@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary\Api\Upload\UploadApi;
 
 class EventController extends Controller
 {
@@ -69,18 +70,30 @@ class EventController extends Controller
     // Save the logged-in user's ID
     $validated['user_id'] = Auth::id();
 
+    //upload image to cloudinary if provided
+
     if ($request->hasFile('image')) {
 
-        $validated['image'] = $request->file('image')
-                                      ->store('events', 'public');
+        $upload = new UploadApi();
+
+            $result = $upload->upload(
+
+            $request->file('image')->getRealPath(),
+            [
+                'folder' => 'eventhub/events',
+            ]
+        );
+
+        // Save Cloudinary's permanent HTTPS URL
+        $validated['image'] = $result['secure_url'];
     }
 
     Event::create($validated);
 
     return redirect()
-            ->route('events.index')
-            ->with('success', 'Event created successfully!');
-    }
+        ->route('events.index')
+        ->with('success', 'Event created successfully!');
+}
 
     /**
      * Display the specified resource.

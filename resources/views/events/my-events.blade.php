@@ -93,23 +93,40 @@
 <div class="event-card">
 
     {{-- Event Image --}}
-    <div class="event-image-wrapper">
+<div class="event-image-wrapper">
 
-        @if($event->image)
+    @if($event->image)
 
+        @if(filter_var($event->image, FILTER_VALIDATE_URL))
+
+            {{-- Cloudinary image --}}
             <img
-                src="{{ asset('storage/'.$event->image) }}"
+                src="{{ $event->image }}"
                 alt="{{ $event->title }}"
-                class="event-image">
+                class="event-image"
+                loading="lazy">
 
         @else
 
+            {{-- Older local-storage image --}}
             <img
-                src="{{ asset('images/default-event.jpg.jpeg') }}"
-                alt="Default Event"
-                class="event-image">
+                src="{{ asset('storage/' . $event->image) }}"
+                alt="{{ $event->title }}"
+                class="event-image"
+                loading="lazy">
 
         @endif
+
+    @else
+
+        {{-- Default image only when no image exists --}}
+        <img
+            src="{{ asset('images/default-event.jpg.jpeg') }}"
+            alt="Default Event"
+            class="event-image"
+            loading="lazy">
+
+    @endif
 
         {{-- Status Badge --}}
         @php

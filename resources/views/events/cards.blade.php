@@ -6,41 +6,52 @@
 
     <div class="event-image-wrapper">
 
-        @if($event->image)
+    @if($event->image)
 
+        @if(filter_var($event->image, FILTER_VALIDATE_URL))
+
+            {{-- Cloudinary image --}}
             <img
-                src="{{ asset('storage/'.$event->image) }}"
+                src="{{ $event->image }}"
                 alt="{{ $event->title }}"
                 class="event-image"
-                loading="lazy"
-                onerror="this.onerror=null;this.src='{{ asset('images/default-event.jpg.jpeg') }}';">
+                loading="lazy">
 
         @else
 
+            {{-- Older local-storage image --}}
             <img
-                src="{{ asset('images/default-event.jpg.jpeg') }}"
-                alt="Default Event"
-                class="event-image">
+                src="{{ asset('storage/' . $event->image) }}"
+                alt="{{ $event->title }}"
+                class="event-image"
+                loading="lazy">
 
         @endif
 
-        @if($event->category)
+    @else
 
-            <span class="category-badge">
+        {{-- Default image only when the event has no image --}}
+        <img
+            src="{{ asset('images/default-event.jpg.jpeg') }}"
+            alt="Default Event"
+            class="event-image"
+            loading="lazy">
 
-                {{ strtoupper($event->category->name) }}
+    @endif
 
-            </span>
+    @if($event->category)
 
-        @endif
-
-        <span class="date-badge">
-
-            {{ \Carbon\Carbon::parse($event->event_date)->format('d M') }}
-
+        <span class="category-badge">
+            {{ strtoupper($event->category->name) }}
         </span>
 
-    </div>
+    @endif
+
+    <span class="date-badge">
+        {{ \Carbon\Carbon::parse($event->event_date)->format('d M') }}
+    </span>
+
+</div>
 
     <div class="event-content">
 

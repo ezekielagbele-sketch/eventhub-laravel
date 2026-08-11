@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>EventHub</title>
+    
+    {{-- Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    {{-- EventHub custom CSS --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-
-    @vite('resources/js/app.js')
+    <link rel="stylesheet" href="{{ asset('css/events.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 </head>   
 <body>
 
@@ -305,23 +309,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 </script>
-<script>
-
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
-if(menuToggle && navMenu){
-
-    menuToggle.addEventListener('click', function(){
-
-        navMenu.classList.toggle('active');
-
-    });
-
-}
-
-</script>
-@yield('content')
 
 @stack('scripts')
 

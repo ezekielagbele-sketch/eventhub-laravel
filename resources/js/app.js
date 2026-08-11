@@ -4,23 +4,19 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-// ==========================================
-// MOBILE NAVIGATION
-// ==========================================
-
 document.addEventListener('DOMContentLoaded', function () {
 
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
-    if (!menuToggle || !navMenu) {
-        return;
+    if (menuToggle && navMenu) {
+
+        menuToggle.addEventListener('click', function () {
+
+            navMenu.classList.toggle('active');
+
+        });
+
     }
-
-    menuToggle.addEventListener('click', function () {
-
-        navMenu.classList.toggle('mobile-open');
-
-    });
 
 });

@@ -448,6 +448,9 @@
 
         z-index: 1050;
     }
+     .nav-menu.active {
+        display: flex;
+    }
 
     /* Show navigation when JS adds this class */
 

@@ -6,23 +6,37 @@
 
         <div class="featured-image">
 
-            @if($featuredEvent->image)
+    @if($featuredEvent->image)
 
-                <img
-                    src="{{ asset('storage/'.$featuredEvent->image) }}"
-                    alt="{{ $featuredEvent->title }}"
-                    loading="lazy"
-                    onerror="this.onerror=null;this.src='{{ asset('images/default-event.jpg.jpeg') }}';">
+        @if(filter_var($featuredEvent->image, FILTER_VALIDATE_URL))
 
-            @else
+            {{-- Cloudinary image --}}
+            <img
+                src="{{ $featuredEvent->image }}"
+                alt="{{ $featuredEvent->title }}"
+                loading="lazy">
 
-                <img
-                    src="{{ asset('images/default-event.jpg.jpeg') }}"
-                    alt="Featured Event">
+        @else
 
-            @endif
+            {{-- Older local-storage image --}}
+            <img
+                src="{{ asset('storage/' . $featuredEvent->image) }}"
+                alt="{{ $featuredEvent->title }}"
+                loading="lazy">
 
-        </div>
+        @endif
+
+    @else
+
+        {{-- Default image only when no image exists --}}
+        <img
+            src="{{ asset('images/default-event.jpg.jpeg') }}"
+            alt="Featured Event"
+            loading="lazy">
+
+    @endif
+
+</div>
 
         <div class="featured-content">
 

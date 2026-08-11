@@ -2,98 +2,173 @@
 
 @section('content')
 
-<h1>Create Event</h1>
+<div class="container">
 
-<form action="{{ route('events.store') }}"
-      method="POST"
-      enctype="multipart/form-data">
+    <h1>Create Event</h1>
 
-    @csrf
+    <form
+        action="{{ route('events.store') }}"
+        method="POST"
+        enctype="multipart/form-data">
 
-    <div style="margin-bottom:20px;">
+        @csrf
 
-        <label>Title</label><br>
+        <div style="margin-bottom:20px;">
 
-        <input type="text" name="title">
+            <label for="title">Title</label><br>
 
-    </div>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ old('title') }}"
+                required>
+        </div>
 
-    <div class="form-group">
-    <label for="category_id">Category</label>
 
-    <select name="category_id" id="category_id" required>
-        <option value="">-- Select a Category --</option>
+        <div class="form-group">
 
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}"
-                {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                {{ $category->name }}
-            </option>
-        @endforeach
-    </select>
+            <label for="category_id">Category</label>
 
-    @error('category_id')
-        <small style="color:red;">{{ $message }}</small>
-    @enderror
-    </div>
+            <select
+                name="category_id"
+                id="category_id"
+                required>
 
-    <div style="margin-bottom:20px;">
+                <option value="">
+                    -- Select a Category --
+                </option>
 
-        <label>Description</label><br>
+                @foreach($categories as $category)
 
-        <textarea rows="5" name="description"></textarea>
+                    <option
+                        value="{{ $category->id }}"
+                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
 
-    </div>
+                        {{ $category->name }}
 
-    <div style="margin-bottom:20px;">
+                    </option>
 
-        <label>Venue</label><br>
+                @endforeach
 
-        <input type="text" name="venue">
+            </select>
 
-    </div>
+            @error('category_id')
 
-    <div style="margin-bottom:20px;">
+                <small style="color:red;">
+                    {{ $message }}
+                </small>
 
-        <label>Date</label><br>
+            @enderror
 
-        <input type="date" name="event_date">
+        </div>
 
-    </div>
 
-    <div style="margin-bottom:20px;">
+        <div style="margin-bottom:20px;">
 
-        <label>Time</label><br>
+            <label for="description">
+                Description
+            </label><br>
 
-        <input type="time" name="event_time">
+            <textarea
+                rows="5"
+                id="description"
+                name="description"
+                required>{{ old('description') }}</textarea>
 
-    </div>
+        </div>
 
-    <div style="margin-bottom:20px;">
 
-        <label>Capacity</label><br>
+        <div style="margin-bottom:20px;">
 
-        <input type="number" name="capacity">
+            <label for="venue">Venue</label><br>
 
-    </div>
- 
-    <div style="margin-bottom:20px;">
+            <input
+                type="text"
+                id="venue"
+                name="venue"
+                value="{{ old('venue') }}"
+                required>
 
-    <label>Event Flyer</label><br>
+        </div>
 
-    <input
-        type="file"
-        name="image"
-        accept="image/*">
 
-    </div>
+        <div style="margin-bottom:20px;">
 
-    <button class="btn">
+            <label for="event_date">Date</label><br>
 
-        Save Event
+            <input
+                type="date"
+                id="event_date"
+                name="event_date"
+                value="{{ old('event_date') }}"
+                required>
 
-    </button>
+        </div>
 
-</form>
+
+        <div style="margin-bottom:20px;">
+
+            <label for="event_time">Time</label><br>
+
+            <input
+                type="time"
+                id="event_time"
+                name="event_time"
+                value="{{ old('event_time') }}"
+                required>
+
+        </div>
+
+
+        <div style="margin-bottom:20px;">
+
+            <label for="capacity">Capacity</label><br>
+
+            <input
+                type="number"
+                id="capacity"
+                name="capacity"
+                value="{{ old('capacity') }}"
+                min="1"
+                required>
+
+        </div>
+
+
+        <div style="margin-bottom:20px;">
+
+            <label for="image">
+                Event Flyer
+            </label><br>
+
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/jpeg,image/png,image/webp">
+
+            @error('image')
+
+                <small style="color:red;">
+                    {{ $message }}
+                </small>
+
+            @enderror
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn">
+
+            Save Event
+
+        </button>
+
+    </form>
+
+</div>
 
 @endsection

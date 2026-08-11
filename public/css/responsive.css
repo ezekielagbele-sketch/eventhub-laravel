@@ -396,3 +396,455 @@ img {
         max-width: 100%;
     }
 }
+
+/* ==========================================
+   FINAL MOBILE OVERFLOW FIX
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Event cards */
+
+    .event-row,
+    .event-card,
+    .event-details,
+    .event-action,
+    .event-image {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .event-row {
+        overflow: hidden;
+    }
+
+    .event-image {
+        display: block;
+        overflow: hidden;
+    }
+
+    .event-image img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Prevent long titles/text from expanding cards */
+
+    .event-details,
+    .event-details h2,
+    .event-details h3,
+    .event-details p {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    /* Event buttons */
+
+    .event-action {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .event-action .btn,
+    .event-action a,
+    .event-action button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* General form controls */
+
+    input,
+    select,
+    textarea,
+    button {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================
+   FINAL EVENT GRID MOBILE FIX
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        gap: 25px;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-card {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        margin: 0;
+        padding: 0;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+    .events-grid .event-image {
+        position: relative;
+
+        width: 100%;
+        max-width: 100%;
+
+        height: 210px;
+
+        margin: 0;
+        padding: 0;
+
+        overflow: hidden;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-image img {
+        display: block;
+
+        width: 100%;
+        max-width: 100%;
+
+        height: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        object-fit: cover;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-details {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        padding: 20px;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-details h3,
+    .events-grid .event-details p {
+        width: 100%;
+        max-width: 100%;
+
+        margin-left: 0;
+        margin-right: 0;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-meta {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-meta span {
+        max-width: 100%;
+        min-width: 0;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .events-grid .event-action {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 12px;
+
+        padding: 0 20px 20px;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-action .price {
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .events-grid .event-action .btn {
+        display: flex;
+
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+
+        align-items: center;
+        justify-content: center;
+
+        white-space: nowrap;
+    }
+
+}
+
+/* =========================================================
+   FINAL FEATURED EVENT MOBILE FIX
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* Featured section itself */
+    .featured-event {
+        width: 100%;
+        padding: 60px 16px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    /* Main featured card */
+    .featured-wrapper {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        padding: 20px;
+
+        margin: 0 auto;
+
+        border-radius: 22px;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+    /* Make sure grid children cannot force the card wider */
+    .featured-image,
+    .featured-content {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Featured image */
+    .featured-image {
+        width: 100%;
+        height: auto;
+
+        aspect-ratio: 16 / 10;
+
+        border-radius: 18px;
+
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .featured-image img {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        max-width: 100%;
+
+        object-fit: cover;
+
+        box-sizing: border-box;
+    }
+
+    /* Featured content */
+    .featured-content {
+        width: 100%;
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 16px;
+
+        box-sizing: border-box;
+    }
+
+    /* Tag */
+    .featured-tag {
+        max-width: 100%;
+
+        align-self: flex-start;
+
+        box-sizing: border-box;
+    }
+
+    /* Title */
+    .featured-content h2 {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 32px;
+        line-height: 1.2;
+
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        box-sizing: border-box;
+    }
+
+    /* Description */
+    .featured-content p {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 16px;
+        line-height: 1.7;
+
+        overflow-wrap: break-word;
+
+        box-sizing: border-box;
+    }
+
+    /* Event information */
+    .featured-meta {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .featured-meta div {
+        width: 100%;
+        min-width: 0;
+
+        padding: 12px 8px;
+
+        text-align: center;
+
+        overflow-wrap: break-word;
+        word-break: break-word;
+
+        box-sizing: border-box;
+    }
+
+    /* View Event button */
+    .featured-content .btn {
+        width: 100%;
+        max-width: 100%;
+
+        margin-top: 5px;
+
+        box-sizing: border-box;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .featured-event {
+        padding: 45px 12px;
+    }
+
+    .featured-wrapper {
+        padding: 16px;
+
+        gap: 20px;
+
+        border-radius: 20px;
+    }
+
+    .featured-image {
+        aspect-ratio: 16 / 10;
+        border-radius: 16px;
+    }
+
+    .featured-content h2 {
+        font-size: 28px;
+    }
+
+    .featured-content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .featured-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .featured-meta div {
+        padding: 11px 6px;
+        font-size: 13px;
+    }
+
+    .featured-content .btn {
+        width: 100%;
+        min-height: 48px;
+    }
+}
